@@ -1,0 +1,26 @@
+ER Diagram:
+-----------------------------------
+Table Name: Book_master
+
+Attributes: Book_code PK varchar
+	    Book_title varchar
+	    Book_author varchar
+	    Is_issued boolean
+	    Is_issuable boolean
+-----------------------------------------
+
+Table Name: Member_master
+
+Attributes: Member_code PK varchar
+	    Member_type varchar
+	    Member_name varchar
+	    No_of_books_issued number
+--------------------------------------------
+
+Table Name: Issue_master
+	  
+Attributes: Issue_serial_no PK varchar
+	    Date_of_issue Date default sysdate
+	    Date_of_return Date
+	    Book_code FK varchar
+	    Member_code FK varchar
