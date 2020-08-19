@@ -1,8 +1,10 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean"%>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,26 +19,34 @@
 	
 	<%
 		//list = request.getAttribute("error_list");
-	    serialno = Integer.parseInt(request.getAttribute("serialnum").toString());
+	    //serialno = Integer.parseInt(request.getAttribute("serialnum").toString());
+	    
+	    
+	    
+	    
 	%>
 	
-	<html:form action="issueBooksAction">
+	<html:form action="issueBooksAction"  method="post">
 		<table>
 			<tr>
 				<td>Issue Serial Number</td>
-				<td><%=serialno +1%></td>
+				<td><html:text property="IssueSerialNumber" value="Auto Generated"/></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>Member Code</td>
 				<td><html:text property="memberCode" size="20" maxlength="20" /></td>
+				<td><html:submit property="member" value="getMember">Get Member Details</html:submit></td>
 			</tr>
 			<tr>
 				<td>Member Name</td>
 				<td><html:text property="memberName" size="20" maxlength="20" /></td>
+				
 			</tr>
 			<tr>
 				<td>Book Code</td>
 				<td><html:text property="bookCode" size="20" maxlength="20" /></td>
+				<td><html:submit property="books" value="getBooks">Get Book Details</html:submit></td>
 			</tr>
 			<tr>
 				<td>Title</td>
