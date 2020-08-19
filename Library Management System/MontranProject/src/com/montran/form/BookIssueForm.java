@@ -10,7 +10,7 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 
 public class BookIssueForm extends ActionForm{
-		private String IssueSerialNumber;
+		private int IssueSerialNumber;
 		private String memberCode;
 		private String memberName;
 		private String bookCode;
@@ -25,10 +25,10 @@ public class BookIssueForm extends ActionForm{
 		}
 		
 		
-		public BookIssueForm(String issueSerialNumber, String memberCode, String memberName, String bookCode,
+		public BookIssueForm(int IssueSerialNumber, String memberCode, String memberName, String bookCode,
 				String bookTitle, String bookAuthor, String issueDate, String returnDate) {
 			super();
-			IssueSerialNumber = issueSerialNumber;
+			this.IssueSerialNumber = IssueSerialNumber;
 			this.memberCode = memberCode;
 			this.memberName = memberName;
 			this.bookCode = bookCode;
@@ -38,55 +38,89 @@ public class BookIssueForm extends ActionForm{
 			this.returnDate = returnDate;
 		}
 		
-		public String getIssueSerialNumber() {
+		
+		
+		
+		public int getIssueSerialNumber() {
 			return IssueSerialNumber;
 		}
-		public void setIssueSerialNumber(String issueSerialNumber) {
+
+
+		public void setIssueSerialNumber(int issueSerialNumber) {
 			IssueSerialNumber = issueSerialNumber;
 		}
+
+
 		public String getMemberCode() {
 			return memberCode;
 		}
+
+
 		public void setMemberCode(String memberCode) {
 			this.memberCode = memberCode;
 		}
+
+
 		public String getMemberName() {
 			return memberName;
 		}
+
+
 		public void setMemberName(String memberName) {
 			this.memberName = memberName;
 		}
+
+
 		public String getBookCode() {
 			return bookCode;
 		}
+
+
 		public void setBookCode(String bookCode) {
 			this.bookCode = bookCode;
 		}
+
+
 		public String getBookTitle() {
 			return bookTitle;
 		}
+
+
 		public void setBookTitle(String bookTitle) {
 			this.bookTitle = bookTitle;
 		}
+
+
 		public String getBookAuthor() {
 			return bookAuthor;
 		}
+
+
 		public void setBookAuthor(String bookAuthor) {
 			this.bookAuthor = bookAuthor;
 		}
+
+
 		public String getIssueDate() {
 			return issueDate;
 		}
+
+
 		public void setIssueDate(String issueDate) {
 			this.issueDate = issueDate;
 		}
+
+
 		public String getReturnDate() {
 			return returnDate;
 		}
+
+
 		public void setReturnDate(String returnDate) {
 			this.returnDate = returnDate;
 		}
-		
+
+
 		@Override
 		public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
 			ActionErrors errors = new ActionErrors();
