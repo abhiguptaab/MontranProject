@@ -37,6 +37,8 @@
 		
 		<action path="/issueBooksAction"
 			type="com.montran.action.IssueBooksAction" name ="BookIssueForm" validate="true" input ="/IssueBooks.jsp">
+			<forward name="member" path="/IssueBooks.jsp" />
+			<forward name="books" path="/IssueBooks.jsp" />
 			<forward name="success" path="/updateSuccess.jsp" />
 			<forward name="failure" path="/issueFailure.jsp" />
 		</action>
