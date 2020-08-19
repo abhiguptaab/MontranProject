@@ -46,12 +46,13 @@ public class LibraryDAO {
 	
 	public int getIssueSerialNo() {
 		session = factory.openSession();
-		String hql = "select max(book_issue) from book_issue_master";
+		String hql = "select max(issueSerialNumber) from book_issue_master";
 		Query query = session.createQuery(hql);
-		int serialnolist = query.getMaxResults();
+		List<Integer> IssueList = query.list();
+		int serialnolist =IssueList.get(0);
 		System.out.println(serialnolist);
 		session.close();
-		return serialnolist;
+		return serialnolist + 1;
 	}
 	
 	public void Update(Issue issue) {
@@ -114,6 +115,26 @@ public class LibraryDAO {
 			}
 		}
 		return false;
+	}
+	
+	
+	
+	
+	
+	public Member_Master getMemberByMemberCode(String memberCode) {
+		session = SessionFactoryUtil.getFactory().openSession();
+		Member_Master member = session.get(Member_Master.class, memberCode);
+		System.out.println(member);
+		session.close();
+		return member;
+	}
+	
+	public	Book_Master getBookByBookCode(String bookCode) {
+		session = SessionFactoryUtil.getFactory().openSession();
+		Book_Master books = session.get(Book_Master.class, bookCode);
+		System.out.println(books);
+		session.close();
+		return books;
 	}
 	
 }
