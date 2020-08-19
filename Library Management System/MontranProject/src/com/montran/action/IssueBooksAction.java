@@ -46,6 +46,28 @@ public class IssueBooksAction extends Action{
 		
 			
 			
+			if (request.getParameter("member") != null) {
+				if (request.getParameter("member").equals("getMember")) {
+					System.out.println("getMember Button Clicked");
+					System.out.println(bookissueform.getMemberCode());
+					member = dao.getMemberByMemberCode(bookissueform.getMemberCode());
+					bookissueform.setMemberName(member.getName());
+					return mapping.findForward("member");
+				}
+			}
+
+			if (request.getParameter("books") != null) {
+				if (request.getParameter("books").equals("getBooks")) {
+					System.out.println("getBook Button Clicked");
+					System.out.println(bookissueform.getBookCode());
+					books = dao.getBookByBookCode(bookissueform.getBookCode());
+					bookissueform.setBookTitle(books.getBookName());
+					bookissueform.setBookAuthor(books.getBookPrice());
+					return mapping.findForward("books");
+				}
+			}
+			
+			
 			if(dao.checkBookStatus(bookList, bookissueform.getBookCode()))  // check status of book (true if bbok is available)
 			{
 				books.setBookId(bookissueform.getBookCode());
@@ -70,10 +92,14 @@ public class IssueBooksAction extends Action{
 				date2.add(Calendar.DATE, 90);
 				date=date1.getTime();
 				datef=date2.getTime();
-				issue.setIssueDate(new Date()); 
+				bookissueform.setIssueDate(date.toString());
+				bookissueform.setReturnDate(datef.toString());
+				issue.setIssueDate(date); 
+				bookissueform.setIssueSerialNumber(dao.getIssueSerialNo());
+				issue.setIssueSerialNumber(bookissueform.getIssueSerialNumber());
 				if(dao.checkType(memberList, bookissueform.getMemberCode())) {   //True if Member is Student
 					//issue.setReturnDate(currentDate.format(date.getTime() + 30 * 1000 * 60 * 60 * 24)); // Return Date is 30 days after issue of book id member is student
-					issue.setReturnDate(date);
+					issue.setReturnDate(datef);
 					member.setMemberType("student");
 					if(member.getNo_of_books_issue()<3) {            //Check if copies of book are less than 3 or not(for student)
 						member.setNo_of_books_issue(1);
